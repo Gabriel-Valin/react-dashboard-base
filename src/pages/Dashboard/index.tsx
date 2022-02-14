@@ -1,7 +1,10 @@
-import Layout from "../../components/Layout";
+import ContentHeader from "../../components/ContentHeader";
+import { Container } from "./styles";
 
 export default function Dashboard () {
     return (
-       <Layout />
+       <Container>
+           <ContentHeader />
+       </Container>
     )
 }

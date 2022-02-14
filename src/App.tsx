@@ -3,12 +3,15 @@ import GlobalStyles from "./styles/GlobalStyles"
 import { ThemeProvider } from 'styled-components'
 import dark from "./styles/themes/dark"
 import light from "./styles/themes/light"
+import Dashboard from "./pages/Dashboard"
 
 function App() {
   return (
    <ThemeProvider theme={dark}>
     <GlobalStyles />
-    <Layout />
+    <Layout>
+      <Dashboard />
+    </Layout>
    </ThemeProvider>
   )
 }

@@ -3,12 +3,14 @@ import MainHeader from "../MainHeader";
 import Aside from "../Aside";
 import Content from "../Content";
 
-export default function Layout () {
+export default function Layout ({ children }: any) {
     return (
         <Grid>
             <MainHeader />
             <Aside />
-            <Content />
+            <Content>
+                {children}
+            </Content>
         </Grid>
     )
 }

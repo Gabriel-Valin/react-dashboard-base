@@ -1,9 +1,9 @@
 import { Container } from "./styles";
 
-export default function Content () {
+export default function Content ({ children }: any) {
     return (
         <Container>
-            Content
+            {children}
         </Container>
     )
 }
