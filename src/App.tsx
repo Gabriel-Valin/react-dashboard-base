@@ -1,11 +1,11 @@
-import Dashboard from "./pages/Dashboard"
+import Layout from "./components/Layout"
 import GlobalStyles from "./styles/GlobalStyles"
 
 function App() {
   return (
    <>
     <GlobalStyles />
-    <Dashboard />
+    <Layout />
    </>
   )
 }
