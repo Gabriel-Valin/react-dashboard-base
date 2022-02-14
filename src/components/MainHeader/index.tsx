@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import emojis from "../../utils/emojis";
+import Toggle from "../Toggle";
 import { Container, Welcome, Username, Profile } from "./styles";
 
 export default function MainHeader () {
@@ -10,7 +11,7 @@ export default function MainHeader () {
 
     return (
         <Container>
-            <h1>toggle</h1>
+            <Toggle />
             <Profile>
                 <Welcome>Ola, {sortEmoji} </Welcome>
                 <Username>Gabriel Valin</Username>
