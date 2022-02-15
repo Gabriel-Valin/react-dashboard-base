@@ -36,6 +36,11 @@ export const Container = styled.li`
         padding-left: 10px;
     }
 
+    > div span {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
     > h3 {
         color: ${props => props.theme.colors.white};
     }
@@ -46,6 +51,8 @@ export const Tag = styled.div<TagTypeProps>`
     height: 60%;
     position: absolute;
     left: 0;
+
+    border-radius: 5px;
 
     background-color: ${props => props.color}
 `;

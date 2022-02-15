@@ -1,21 +1,38 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import ContentHeader from "../../components/ContentHeader";
 import FinanceCard from "../../components/FinanceCard";
 import SelectInput from "../../components/SelectInput";
 import { Container, Content, Filters } from './styles';
 
+import gains from "../../repositories/gains";
+import expenses from "../../repositories/expenses";
+
+type DataTypeProps = {
+    description: string
+    amount: string
+    frequency: string
+    date: string
+    type: string
+}
+
 function List() {
+    const [data, setData] = useState<DataTypeProps[]>([]);
+    
     const { type } = useParams();
 
-    const {title, lineColor} = useMemo(() => {
-        return type === 'balanco-entradas' ? {
-            title: 'Entradas',
-            lineColor: '#f7931b'
-        } : {
-            title: 'Saidas',
-            lineColor: '#e44c4e'
-        }
+
+
+    const title = useMemo(() => {
+        return type === 'balanco-entradas' ? "Entradas" : "Saidas"
+    }, [type]);
+
+    const lineColor = useMemo(() => {
+        return type === 'balanco-entradas' ? "#f7931b" : "#e44c4e"
+    }, [type])
+
+    const listData = useMemo(() => {
+        return type === 'balanco-entradas' ? gains : expenses;
     }, [type]);
 
     const mounths = [
@@ -31,6 +48,11 @@ function List() {
         { value: 2022, label: 2022 }
     ];
 
+    useEffect(() => {
+        setData(listData)
+        console.log(listData)
+    }, []);
+
     return (
         <Container>
             <ContentHeader title={title} lineColor={lineColor}>
@@ -44,7 +66,11 @@ function List() {
             </Filters>
 
             <Content>
-                <FinanceCard tagColor="#e44c4e" title="Conta de luz" subtitle="27/07/2022" amount="R$ 130,00"/>
+                {
+                    data.map(data => (
+                        <FinanceCard key={Math.random() * 1010101} tagColor={data.frequency === 'recorrente' ? '#e44c4e' : '#f7831b'} title={data.description} subtitle={data.date} amount={data.amount}/>
+                    ))
+                }
             </Content>
         </Container>
     );
