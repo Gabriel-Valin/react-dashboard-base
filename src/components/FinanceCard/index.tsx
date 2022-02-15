@@ -1,3 +1,4 @@
+import { formatCurrenct } from "../../utils/formatCurrency";
 import { Container, Tag } from "./styles";
 
 type FinanceCardTypeProps = {
@@ -13,9 +14,9 @@ function FinanceCard({ tagColor, title, subtitle, amount }: FinanceCardTypeProps
             <Tag color={tagColor} />
             <div>
                 <span>{title}</span>
-                <small>{subtitle}</small>
+                <small>{ new Intl.DateTimeFormat('pt-BR').format(new Date(subtitle))}</small>
             </div>
-            <h3>{amount}</h3>
+            <h3>{formatCurrenct(+amount)}</h3>
         </Container>
     );
 }
