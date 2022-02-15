@@ -1,5 +1,6 @@
 import ContentHeader from "../../components/ContentHeader";
 import SelectInput from "../../components/SelectInput";
+import List from "../List";
 import { Container } from "./styles";
 
 export default function Dashboard () {
