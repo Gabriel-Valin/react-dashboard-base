@@ -1,16 +1,15 @@
 import { Container, Tag } from "./styles";
 
 type FinanceCardTypeProps = {
-    cardColor: string
     tagColor: string
     title: string
     subtitle: string
     amount: string
 }
 
-function FinanceCard({ cardColor, tagColor, title, subtitle, amount }: FinanceCardTypeProps) {
+function FinanceCard({ tagColor, title, subtitle, amount }: FinanceCardTypeProps) {
     return (
-        <Container color={cardColor}>
+        <Container>
             <Tag color={tagColor} />
             <div>
                 <span>{title}</span>
