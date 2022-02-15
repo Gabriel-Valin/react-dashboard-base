@@ -1,18 +1,20 @@
 import ContentHeader from "../../components/ContentHeader";
 import SelectInput from "../../components/SelectInput";
-import { Container } from "./styles";
+import { Container } from './styles';
 
-export default function Dashboard () {
+function List() {
     const options = [
         { value: 'Gabriel', label: 'Gabriel' },
         { value: 'Valin', label: 'Valin' }
     ]
 
     return (
-       <Container>
-            <ContentHeader title="Dashboard" lineColor="#f73">
-                <SelectInput options={options}/>
+        <Container>
+            <ContentHeader title="List" lineColor="#e44">
+                <SelectInput options={options} />
             </ContentHeader>
-       </Container>
-    )
+        </Container>
+    );
 }
+
+export default List;
