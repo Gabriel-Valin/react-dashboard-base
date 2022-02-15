@@ -18,10 +18,11 @@ type DataTypeProps = {
 
 function List() {
     const [data, setData] = useState<DataTypeProps[]>([]);
-    
+    const [mounthSelected, setMounthSelected] = useState<string>(String(new Date().getMonth() + 1));
+    const [yearSelected, setYearSelected] = useState<string>(String(new Date().getFullYear()));
+
+    console.log(mounthSelected)
     const { type } = useParams();
-
-
 
     const title = useMemo(() => {
         return type === 'balanco-entradas' ? "Entradas" : "Saidas"
@@ -49,15 +50,22 @@ function List() {
     ];
 
     useEffect(() => {
-        setData(listData)
-        console.log(listData)
-    }, []);
+        const filterListDate = listData.filter(item => {
+            const date = new Date(item.date)
+            const month = String(date.getMonth() + 1);
+            const year = String(date.getFullYear());
+
+            return month === mounthSelected && year === yearSelected
+        });
+        setData(filterListDate)
+        console.log(filterListDate)
+    }, [listData, mounthSelected, yearSelected]);
 
     return (
         <Container>
             <ContentHeader title={title} lineColor={lineColor}>
-                <SelectInput options={mounths} />
-                <SelectInput options={years} />
+                <SelectInput options={mounths} onChange={(e) => setMounthSelected(e.target.value)} defaultValue={mounthSelected} />
+                <SelectInput options={years} onChange={(e) => setYearSelected(e.target.value)} defaultValue={yearSelected} />
             </ContentHeader>
 
             <Filters>

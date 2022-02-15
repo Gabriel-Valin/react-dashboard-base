@@ -12,7 +12,7 @@ export default function Dashboard () {
     return (
        <Container>
             <ContentHeader title="Dashboard" lineColor="#f73">
-                <SelectInput options={options}/>
+                <SelectInput options={options} onChange={() => {}}/>
             </ContentHeader>
        </Container>
     )

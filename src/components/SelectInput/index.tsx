@@ -1,16 +1,19 @@
+import React from "react";
 import { Container } from "./styles";
 
 type SelectPropsType = {
     options: {
         value: string | number
         label: string | number
-    }[]
+    }[],
+    defaultValue?: string | number
+    onChange(event: React.ChangeEvent<HTMLSelectElement>): void | undefined;
 }
 
-function SelectInput({ options }: SelectPropsType ) {
+function SelectInput({ options, onChange, defaultValue }: SelectPropsType ) {
     return (
         <Container>
-            <select name="" id="">
+            <select onChange={onChange} defaultValue={defaultValue} name="" id="">
                 {
                     options.map(option => (
                         <option value={option.value}>{option.label}</option>
