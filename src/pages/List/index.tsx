@@ -1,19 +1,33 @@
 import ContentHeader from "../../components/ContentHeader";
 import FinanceCard from "../../components/FinanceCard";
 import SelectInput from "../../components/SelectInput";
-import { Container, Content } from './styles';
+import { Container, Content, Filters } from './styles';
 
 function List() {
-    const options = [
-        { value: 'Gabriel', label: 'Gabriel' },
-        { value: 'Valin', label: 'Valin' }
-    ]
+    const mounths = [
+        { value: 7, label: 'Julho' },
+        { value: 8, label: 'Agosto' },
+        { value: 9, label: 'Setembro' }
+    ];
+
+    const years = [
+        { value: 2019, label: 2019 },
+        { value: 2020, label: 2020 },
+        { value: 2021, label: 2021 },
+        { value: 2022, label: 2022 }
+    ];
 
     return (
         <Container>
             <ContentHeader title="List" lineColor="#e44">
-                <SelectInput options={options} />
+                <SelectInput options={mounths} />
+                <SelectInput options={years} />
             </ContentHeader>
+
+            <Filters>
+                <button className="tag-filter tag-filter-recurrent" type="button">Recorrentes</button>
+                <button className="tag-filter tag-filter-eventuals" type="button">Eventuais</button>
+            </Filters>
 
             <Content>
                 <FinanceCard tagColor="#e44c4e" title="Conta de luz" subtitle="27/07/2022" amount="R$ 130,00"/>
