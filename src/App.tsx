@@ -1,18 +1,13 @@
-import Layout from "./components/Layout"
 import GlobalStyles from "./styles/GlobalStyles"
 import { ThemeProvider } from 'styled-components'
 import dark from "./styles/themes/dark"
-import light from "./styles/themes/light"
-import Dashboard from "./pages/Dashboard"
-import List from "./pages/List"
+import AppRoutes from "./routes/app.routes"
 
 function App() {
   return (
    <ThemeProvider theme={dark}>
     <GlobalStyles />
-    <Layout>
-      <List />
-    </Layout>
+    <AppRoutes />
    </ThemeProvider>
   )
 }

@@ -12,15 +12,15 @@ export default function Aside () {
                 </TitleHeader>
             </Header>
             <MenuNavigator>
-                <MenuItemLink href="#">
+                <MenuItemLink href="/dashboard">
                     <MdDashboard />
                     Dashboard
                 </MenuItemLink>
-                <MenuItemLink href="#">
+                <MenuItemLink href="/listagem/balanco-saidas">
                     <MdArrowDownward />
                     Saidas
                 </MenuItemLink>
-                <MenuItemLink href="#">
+                <MenuItemLink href="/listagem/balanco-entradas">
                     <MdArrowUpward />
                     Entradas
                 </MenuItemLink>
