@@ -7,6 +7,7 @@ import { Container, Content, Filters } from './styles';
 
 import gains from "../../repositories/gains";
 import expenses from "../../repositories/expenses";
+import listMonth from '../../utils/months';
 
 type DataTypeProps = {
     description: string
@@ -36,18 +37,32 @@ function List() {
         return type === 'balanco-entradas' ? gains : expenses;
     }, [type]);
 
-    const mounths = [
-        { value: 7, label: 'Julho' },
-        { value: 8, label: 'Agosto' },
-        { value: 9, label: 'Setembro' }
-    ];
+    const months = useMemo(() => {
+        return listMonth.map((month, index) => {
+            return {
+                value: ++index,
+                label: month
+            }
+        })
+    }, [listMonth])
 
-    const years = [
-        { value: 2019, label: 2019 },
-        { value: 2020, label: 2020 },
-        { value: 2021, label: 2021 },
-        { value: 2022, label: 2022 }
-    ];
+    const years = useMemo(() => {
+        let uniqueYears: number[] = []
+        listData.forEach(item => {
+            const date = new Date(item.date)
+            const year = date.getFullYear()
+
+            if (!uniqueYears.includes(year)) {
+                uniqueYears.push(year)
+            }
+        })
+
+        return uniqueYears.map(year => {
+            return {
+                value: year, label: year
+            }
+        })
+    }, [listData])
 
     useEffect(() => {
         const filterListDate = listData.filter(item => {
@@ -58,13 +73,12 @@ function List() {
             return month === mounthSelected && year === yearSelected
         });
         setData(filterListDate)
-        console.log(filterListDate)
     }, [listData, mounthSelected, yearSelected]);
 
     return (
         <Container>
             <ContentHeader title={title} lineColor={lineColor}>
-                <SelectInput options={mounths} onChange={(e) => setMounthSelected(e.target.value)} defaultValue={mounthSelected} />
+                <SelectInput options={months} onChange={(e) => setMounthSelected(e.target.value)} defaultValue={mounthSelected} />
                 <SelectInput options={years} onChange={(e) => setYearSelected(e.target.value)} defaultValue={yearSelected} />
             </ContentHeader>
 

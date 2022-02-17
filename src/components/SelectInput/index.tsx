@@ -16,7 +16,7 @@ function SelectInput({ options, onChange, defaultValue }: SelectPropsType ) {
             <select onChange={onChange} defaultValue={defaultValue} name="" id="">
                 {
                     options.map(option => (
-                        <option value={option.value}>{option.label}</option>
+                        <option key={Math.floor(Math.random() * 1000)} value={option.value}>{option.label}</option>
                     ))
                 }
             </select>
