@@ -21,6 +21,7 @@ function List() {
     const [data, setData] = useState<DataTypeProps[]>([]);
     const [mounthSelected, setMounthSelected] = useState<string>(String(new Date().getMonth() + 1));
     const [yearSelected, setYearSelected] = useState<string>(String(new Date().getFullYear()));
+    const [selectedFrequency, setSelectedFrequency] = useState(['recorrente', 'eventual']);
 
     console.log(mounthSelected)
     const { type } = useParams();
@@ -64,16 +65,27 @@ function List() {
         })
     }, [listData])
 
+    const handleFrequencyClick = (frequency: string) => {
+        const alreadySelected = selectedFrequency.findIndex(item => item === frequency)
+
+        if (alreadySelected >= 0) {
+            const filtered = selectedFrequency.filter(item => item === frequency)
+            setSelectedFrequency(filtered)
+        }
+
+        setSelectedFrequency(prev => [...prev, frequency])
+    }
+
     useEffect(() => {
         const filterListDate = listData.filter(item => {
             const date = new Date(item.date)
             const month = String(date.getMonth() + 1);
             const year = String(date.getFullYear());
 
-            return month === mounthSelected && year === yearSelected
+            return month === mounthSelected && year === yearSelected && selectedFrequency.includes(item.frequency)
         });
         setData(filterListDate)
-    }, [listData, mounthSelected, yearSelected]);
+    }, [listData, mounthSelected, yearSelected, selectedFrequency]);
 
     return (
         <Container>
@@ -83,8 +95,8 @@ function List() {
             </ContentHeader>
 
             <Filters>
-                <button className="tag-filter tag-filter-recurrent" type="button">Recorrentes</button>
-                <button className="tag-filter tag-filter-eventuals" type="button">Eventuais</button>
+                <button className="tag-filter tag-filter-recurrent" onClick={() => handleFrequencyClick('recorrente')} type="button">Recorrentes</button>
+                <button className="tag-filter tag-filter-eventuals" onClick={() => handleFrequencyClick('eventual')} type="button">Eventuais</button>
             </Filters>
 
             <Content>
