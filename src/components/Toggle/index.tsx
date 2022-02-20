@@ -1,11 +1,18 @@
 import { Container, ToggleLabel, ToggleSelector } from "./styles";
 
-export default function Toggle () {
+type ToggleTypeProps = {
+    labelLeft: string
+    labelRight: string
+    checked: boolean
+    onChange(): void
+}
+
+export default function Toggle ({ checked, labelLeft, labelRight, onChange }: ToggleTypeProps) {
     return (
         <Container>
-            <ToggleLabel>Light</ToggleLabel>
-            <ToggleSelector checked onChange={() => console.log('change')}  uncheckedIcon={false} checkedIcon={false}/>
-            <ToggleLabel>Dark</ToggleLabel>
+            <ToggleLabel>{labelLeft}</ToggleLabel>
+            <ToggleSelector checked={checked} onChange={onChange}  uncheckedIcon={false} checkedIcon={false}/>
+            <ToggleLabel>{labelRight}</ToggleLabel>
         </Container>
     )
 }

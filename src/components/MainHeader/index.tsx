@@ -1,9 +1,19 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import emojis from "../../utils/emojis";
 import Toggle from "../Toggle";
 import { Container, Welcome, Username, Profile } from "./styles";
+import { useTheme } from "../../hooks/theme";
 
 export default function MainHeader () {
+    const { toggleTheme, theme } = useTheme()
+
+    const [darkTheme, setDarkTheme] = useState(() => theme.title === 'dark' ? true : false)
+
+    const handleChangeTheme = () => {
+        setDarkTheme(!darkTheme);
+        toggleTheme();
+    }
+
     const sortEmoji = useMemo(() => {
         const index = Math.floor(Math.random() * emojis.length)
         return emojis[index]
@@ -11,7 +21,7 @@ export default function MainHeader () {
 
     return (
         <Container>
-            <Toggle />
+            <Toggle checked={darkTheme} labelLeft="Light" labelRight="Dark" onChange={handleChangeTheme}/>
             <Profile>
                 <Welcome>Ola, {sortEmoji} </Welcome>
                 <Username>Gabriel Valin</Username>
