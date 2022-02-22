@@ -1,8 +1,11 @@
-import { Container, Header, LogoImg, MenuNavigator, MenuItemLink, TitleHeader } from "./styles";
+import { Container, Header, LogoImg, MenuNavigator, MenuItemLink, TitleHeader, MenuItemBottom } from "./styles";
 import logoImg from '../../assets/logo.svg';
 import { MdDashboard, MdArrowDownward, MdArrowUpward, MdExitToApp } from 'react-icons/md';
+import { useAuth } from "../../hooks/auth";
 
 export default function Aside () {
+    const { logout } = useAuth();
+
     return (
         <Container>
             <Header>
@@ -24,10 +27,10 @@ export default function Aside () {
                     <MdArrowUpward />
                     Entradas
                 </MenuItemLink>
-                <MenuItemLink href="#">
+                <MenuItemBottom onClick={logout}>
                     <MdExitToApp />
                     Sair
-                </MenuItemLink>
+                </MenuItemBottom>
             </MenuNavigator>
         </Container>
     )

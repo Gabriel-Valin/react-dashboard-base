@@ -31,6 +31,26 @@ export const MenuNavigator  = styled.nav`
     margin-top: 40px;
 `;
 
+export const MenuItemBottom = styled.button`
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    color: ${props => props.theme.colors.info};
+
+    background: none;
+    margin: 10px 0;
+
+    transition: opacity .3s;
+
+    &:hover {
+        opacity: .7;
+    }
+    
+    > svg {
+        margin-right: 5px;
+    }
+`;
+
 export const MenuItemLink = styled.a`
     display: flex;
     align-items: center;
