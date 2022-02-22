@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import emojis from "../../utils/emojis";
-import Toggle from "../Toggle";
-import { Container, Welcome, Username, Profile } from "./styles";
+import { Container, Welcome, Username, Profile, Toggle } from "./styles";
 import { useTheme } from "../../hooks/theme";
 
 export default function MainHeader () {

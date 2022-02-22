@@ -1,14 +1,21 @@
-import { Container, Header, LogoImg, MenuNavigator, MenuItemLink, TitleHeader, MenuItemBottom } from "./styles";
+import { Container, Header, LogoImg, MenuNavigator, MenuItemLink, TitleHeader, MenuItemBottom, ToggleMenu } from "./styles";
 import logoImg from '../../assets/logo.svg';
-import { MdDashboard, MdArrowDownward, MdArrowUpward, MdExitToApp } from 'react-icons/md';
+import { MdDashboard, MdArrowDownward, MdArrowUpward, MdExitToApp, MdClose, MdMenu } from 'react-icons/md';
 import { useAuth } from "../../hooks/auth";
+import { useState } from "react";
 
 export default function Aside () {
     const { logout } = useAuth();
+    const [toggleMenuOpened, setToggleMenuOpened] = useState<boolean>(false)
+    const handleToggleMenu = () => setToggleMenuOpened(!toggleMenuOpened)
 
     return (
-        <Container>
+        <Container menuIsOpen={toggleMenuOpened}>
             <Header>
+                <ToggleMenu onClick={handleToggleMenu}>
+                    { toggleMenuOpened ? <MdClose /> : <MdMenu />  }
+                </ToggleMenu>
+
                 <LogoImg src={logoImg} alt="Logo Application" />
                 <TitleHeader>
                     Minha Carteira
