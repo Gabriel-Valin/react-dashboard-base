@@ -19,8 +19,6 @@ export const Grid = styled.div`
     height: 100vh;
 
     @media(max-width: 600px) {
-        transition: .6s;
-
         grid-template-columns: 100%;
         grid-template-rows: 80px auto;
         
